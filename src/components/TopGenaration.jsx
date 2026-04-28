@@ -19,7 +19,7 @@ const TopGenaration = async() => {
                 }
             </div>
             <div className='flex items-center justify-center'>
-                <Link href={`/all-photos`}><button className=' mt-3 btn btn-neutral btn-outline'>View All Photos <FaArrowRight></FaArrowRight></button></Link>
+                <Link href={`/photos`}><button className=' mt-3 btn btn-neutral btn-outline'>View All Photos <FaArrowRight></FaArrowRight></button></Link>
             </div>
         </div>
     );

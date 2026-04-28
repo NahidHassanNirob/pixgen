@@ -1,11 +1,26 @@
 "use client";
+import Link from "next/link";
 import React from "react";
 import { useState } from "react";
-import { Link, Button } from "@heroui/react";
+import { Button } from "@heroui/react";
 import logo from "@/assest/image/logo.png";
 import Image from "next/image";
+import { authClient } from "@/lib/authClient";
+import Loading from "@/app/loading";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { data: session, isPending } = authClient.useSession();
+  // console.log(session.user);
+  if (isPending) {
+    return <Loading></Loading>;
+  }
+  const user = session?.user;
+  const handelLogOut= async()=>{
+    await authClient.signOut()
+
+  }
+
+
   const links = (
     <>
       <li>
@@ -53,33 +68,64 @@ const Navbar = () => {
               )}
             </svg>
           </button>
-          <div className=" flex items-center gap-2">
-            <Image
-              className="h-12 w-12"
-              src={logo}
-              alt="nav logo"
-              height={200}
-              width={300}
-            ></Image>
-            <h2 className="font-bold text-xl">Pixgen</h2>
-          </div>
+          <Link href={"/"}>
+            <div className=" flex items-center gap-2">
+              <Image
+                className="h-12 w-12"
+                src={logo}
+                alt="nav logo"
+                height={200}
+                width={300}
+              ></Image>
+              <h2 className="font-bold text-xl">Pixgen</h2>
+            </div>
+          </Link>
         </div>
-        <ul className="hidden items-center gap-4 md:flex">{links}
+        <ul className="hidden items-center gap-4 md:flex">
+          {links}
 
-          <div>
-          <Button variant="primary">Sign in</Button>
-          <Button className='bg-green-500 ml-2 text-white' variant="">Sign up</Button>
-        </div>
+          {user ? (
+            <div className="flex gap-4  items-center">
+              <div >
+                <Image   className=" h-14 w-14"
+                src={user.image}
+                alt="user image"
+                height={30}
+                width={30}
+              ></Image>
+              </div>
+              
+                <Button onClick={handelLogOut} variant="danger">Logout</Button>
+              
+            </div>
+          ) : (
+            <div className="">
+              <Link href={"/signin"}>
+                <Button variant="primary">Sign in</Button>
+              </Link>
+              <Link href={"/signup"}>
+                <Button className="bg-green-500 ml-4 text-white">
+                  Sign up
+                </Button>
+              </Link>
+            </div>
+          )}
         </ul>
-        
       </header>
       {isMenuOpen && (
         <div className="border-t border-separator md:hidden">
-          <ul className="flex flex-col gap-2 p-4">{links}
+          <ul className="flex flex-col gap-2 p-4">
+            {links}
             <div>
-          <Button variant="primary">Sign in</Button>
-          <Button className='bg-green-500 ml-2 text-white' variant="">Sign up</Button>
-        </div>
+              <Link href={"/signin"}>
+                <Button variant="primary">Sign in</Button>
+              </Link>
+              <Link href={"/signup"}>
+                <Button className="bg-green-500 ml-2 text-white">
+                  Sign up
+                </Button>
+              </Link>
+            </div>
           </ul>
         </div>
       )}

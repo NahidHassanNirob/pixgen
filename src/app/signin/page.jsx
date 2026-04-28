@@ -24,6 +24,14 @@ const SignInPage = () => {
     })
 
   }
+  
+  const signInGoogle= async()=>{
+    await authClient.signIn.social({
+      provider:"google"
+    })
+
+  }
+
   return (
     <div className="container mx-auto px-3 flex justify-center items-center">
       <div className="bg-white rounded-md shadow mt-5 p-4">
@@ -78,7 +86,7 @@ const SignInPage = () => {
         
       </Form>
       <div className="flex flex-col gap-3 mt-3">
-          <button className="btn border-gray-400 bg-white text-black border-[#e5e5e5]">
+          <button onClick={signInGoogle} className="btn border-gray-400 bg-white text-black border-[#e5e5e5]">
             <svg
               aria-label="Google logo"
               width="16"

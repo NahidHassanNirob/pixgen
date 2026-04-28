@@ -25,22 +25,14 @@ const Loading = () => {
         {/* Loading Text with Gradient */}
         <div className="text-center space-y-2">
           <h2 className="text-2xl font-bold tracking-tighter bg-gradient-to-r from-primary via-purple-500 to-secondary bg-clip-text text-transparent animate-pulse">
-            PixGen AI is Thinking...
+            PixGen  is  Thinking...
           </h2>
         </div>
 
-        {/* Skeleton Grid Preview */}
-        {/* <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12 opacity-10">
-          {[1, 2, 3, 4].map((i) => (
-            <div
-              key={i}
-              className="h-24 w-24 bg-zinc-400 dark:bg-zinc-700 rounded-2xl animate-pulse"
-            ></div>
-          ))}
-        </div> */}
+        
       </div>
     </div>
   );
 };
 
-export default Loading;
+export default Loading; 

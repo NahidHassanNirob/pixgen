@@ -87,7 +87,7 @@ const Navbar = () => {
           {user ? (
             <div className="flex gap-4  items-center">
               <div >
-                <Image   className=" h-14 w-14"
+                <Image   className=" rounded-full h-10 w-10"
                 src={user.image}
                 alt="user image"
                 height={30}

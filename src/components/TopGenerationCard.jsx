@@ -29,7 +29,7 @@ const TopGenerationCard = ({ data }) => {
         <button className="btn btn-active flex items-center"> <FaArrowDown size={15} />{downloads}</button>
         </div>
         <div className="card-actions justify-end  mb-2">
-          <Link href={`/details/${id}`}><button className="btn btn-primary btn-sm text-white">View Details</button></Link>
+          <Link href={`/photo/${id}`}><button className="btn btn-primary btn-sm text-white">View Details</button></Link>
         </div>
       </div>
     </div>

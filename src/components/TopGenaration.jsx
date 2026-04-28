@@ -1,6 +1,8 @@
 import { topGeneration } from '@/lib/dataFetching';
 import React from 'react';
 import TopGenerationCard from './TopGenerationCard';
+import Link from 'next/link';
+import { FaArrowRight } from 'react-icons/fa';
 
 const TopGenaration = async() => {
     const topGenerationData=await topGeneration();
@@ -15,6 +17,9 @@ const TopGenaration = async() => {
                 {
                     topData.map(data=><TopGenerationCard key={data.id} data={data}></TopGenerationCard>)
                 }
+            </div>
+            <div className='flex items-center justify-center'>
+                <Link href={`/all-photos`}><button className=' mt-3 btn btn-neutral btn-outline'>View All Photos <FaArrowRight></FaArrowRight></button></Link>
             </div>
         </div>
     );
